@@ -26,8 +26,13 @@ dependencies {
     // Logging
     implementation("ch.qos.logback:logback-classic:1.4.11")
 
-    // MongoDB + Kotlin用 KMongo Coroutine driver
+    // MongoDB + KMongo Core + Coroutine + Serialization
+    implementation("org.litote.kmongo:kmongo:4.11.0")
+    implementation("org.litote.kmongo:kmongo-coroutine:4.11.0") // ← これが `.coroutine` を有効にする
     implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.11.0")
+
+    // .env ファイルの読み込み
+    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
 
     // テスト用
     testImplementation(kotlin("test"))
