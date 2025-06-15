@@ -1,10 +1,11 @@
 plugins {
     kotlin("jvm") version "2.1.20"
+    kotlin("plugin.serialization") version "2.1.20" // 🔧 追加！
     application
 }
 
 application {
-    mainClass.set("com.example.ApplicationKt")
+    mainClass.set("io.ktor.server.netty.EngineMain")
 }
 
 group = "org.example"
@@ -28,7 +29,7 @@ dependencies {
 
     // MongoDB + KMongo Core + Coroutine + Serialization
     implementation("org.litote.kmongo:kmongo:4.11.0")
-    implementation("org.litote.kmongo:kmongo-coroutine:4.11.0") // ← これが `.coroutine` を有効にする
+    implementation("org.litote.kmongo:kmongo-coroutine:4.11.0")
     implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.11.0")
 
     // .env ファイルの読み込み
@@ -36,6 +37,12 @@ dependencies {
 
     // テスト用
     testImplementation(kotlin("test"))
+
+    // パスワードのハッシュ化用
+    implementation("org.mindrot:jbcrypt:0.4")
+
+    // JWT トークン生成用
+    implementation("com.auth0:java-jwt:4.4.0")
 }
 
 tasks.test {
